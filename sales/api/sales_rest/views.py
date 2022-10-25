@@ -9,7 +9,7 @@ from .models import AutomobileVO, SaleRecord, SalesPerson, Customer
 # Create your views here.
 class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
-    properties = ["color", "year", "vin", "available"]
+    properties = ["vin"]
 
 
 class SalesPersonEncoder(ModelEncoder):
@@ -24,12 +24,18 @@ class CustomerEncoder(ModelEncoder):
 
 class SaleRecordEncoder(ModelEncoder):
     model = SaleRecord
-    properties = ["sales_person", "customer", "price", "id"]
+    properties = ["sales_person", "customer", "price"]
 
-    encoders = {"sales_person": SalesPersonEncoder, "customer": CustomerEncoder}
+    encoders = {
+        "sales_person": SalesPersonEncoder(),
+        "customer": CustomerEncoder(),
+        # "automobile": AutomobileVOEncoder,
+    }
 
     def get_extra_data(self, o):
-        return {"vin": o.car.vin}
+        return {
+            "vin": o.automobile.vin,
+        }
 
 
 @require_http_methods(["GET", "POST"])
@@ -107,21 +113,21 @@ def sales_record_list(request):
             safe=False,
         )
     else:
-        try:
-            content = json.loads(request.body)
-            content = {
-                **content,
-                "sales_person": SalesPerson.objects.get(pk=content["sales_person"]),
-                "automobile": AutomobileVO.objects.get(vin=content["automobile"]),
-                "customer": Customer.objects.get(pk=content["customer"]),
-            }
-            sales_record = SaleRecord.objects.create(**content)
-            return JsonResponse(
-                {"sales_record": sales_record},
-                encoder=SaleRecordEncoder,
-                safe=False,
-            )
-        except:
-            response = JsonResponse({"message": "Sales Record cannot be created"})
-            response.status_code = 400
-            return response
+        # try:
+        content = json.loads(request.body)
+        content = {
+            **content,
+            "sales_person": SalesPerson.objects.get(pk=content["sales_person"]),
+            "automobile": AutomobileVO.objects.get(vin=content["automobile"]),
+            "customer": Customer.objects.get(pk=content["customer"]),
+        }
+        sales_record = SaleRecord.objects.create(**content)
+        return JsonResponse(
+            {"sales_record": sales_record},
+            encoder=SaleRecordEncoder,
+            safe=False,
+        )
+        # except:
+        #     response = JsonResponse({"message": "Sales Record cannot be created"})
+        #     response.status_code = 400
+        #     return response
