@@ -62,7 +62,7 @@ class SalesPerson(models.Model):
 
 class Customer(models.Model):
     name = models.CharField(max_length=100)
-    phone_number = models.PositiveSmallIntegerField()
+    phone_number = models.PositiveIntegerField()
     address = models.CharField(max_length=200)
 
     def __str__(self):
