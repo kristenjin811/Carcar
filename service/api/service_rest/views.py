@@ -12,6 +12,11 @@ class TechnicianListEncoder(ModelEncoder):
   properties = ["name"]
 
 
+class TechnicianDetailEncoder(ModelEncoder):
+  model = Technician
+  properties = ["name", "employee_number"]
+
+
 class AppointmentListEncoder(ModelEncoder):
   model = ServiceAppointment
   properties = [
@@ -44,6 +49,25 @@ class AppointmentDetailEncoder(ModelEncoder):
 
 
 require_http_methods(["GET", "POST"])
+def api_list_technicians(request):
+  if request.method == "GET":
+    technicians = Technician.objects.all()
+    return JsonResponse(
+      {"technicians": technicians},
+      encoder = TechnicianDetailEncoder,
+    )
+  else:
+    content = json.loads(request.body)
+    technician = Technician.objects.create(**content)
+    return JsonResponse(
+      {"technician": technician},
+      encoder=TechnicianDetailEncoder,
+      safe=False,
+    )
+
+
+
+require_http_methods(["GET", "POST"])
 def api_list_appointments(request):
   if request.method == "GET":
     service_appointments = ServiceAppointment.objects.all()
@@ -62,6 +86,7 @@ def api_list_appointments(request):
         {"message": "Invalid technician id"},
         status = 400,
       )
+
     service_appointment = ServiceAppointment.objects.create(**content)
     return JsonResponse(
       service_appointment,
