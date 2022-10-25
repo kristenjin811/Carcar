@@ -1,4 +1,4 @@
-from .models import ServiceAppointment, Technician
+from .models import ServiceAppointment, Technician, AutomobileVO
 from common.json import ModelEncoder
 import json
 from django.views.decorators.http import require_http_methods
@@ -48,6 +48,11 @@ class AppointmentDetailEncoder(ModelEncoder):
   }
 
 
+class AutomobileVOEncoder(ModelEncoder):
+  model = AutomobileVO
+  properties = ["vin", "import_href"]
+
+
 require_http_methods(["GET", "POST"])
 def api_list_technicians(request):
   if request.method == "GET":
@@ -67,16 +72,24 @@ def api_list_technicians(request):
 
 
 
+
 require_http_methods(["GET", "POST"])
 def api_list_appointments(request):
   if request.method == "GET":
-    service_appointments = ServiceAppointment.objects.all()
+    service_appointments = ServiceAppointment.objects.all().order_by("time")
     return JsonResponse(
       {"service_appointments": service_appointments},
       encoder = AppointmentListEncoder,
     )
   else:
     content = json.loads(request.body)
+
+    try:
+      AutomobileVO.objects.get(vin=content["VIN"])
+      print(":::", content)
+      content["VIP_treatment"] = True
+    except AutomobileVO.DoesNotExist:
+      content["VIP_treatment"] = False
 
     try:
       technician = Technician.objects.get(id=content["technician"])
