@@ -22,7 +22,7 @@ class AppointmentListEncoder(ModelEncoder):
 
 class AppointmentDetailEncoder(ModelEncoder):
   model = ServiceAppointment
-  properties = ["VIN", "customer_name", "time", "technician", "reason"]
+  properties = ["id", "VIN", "customer_name", "time", "technician", "reason"]
   encoders = {
     "technician": TechnicianListEncoder(),
   }
@@ -60,3 +60,10 @@ def api_detail_appointment(request, pk):
   if request.method == "DELETE":
     count, _ = ServiceAppointment.objects.filter(id=pk).delete()
     return JsonResponse({"delete": count > 0})
+  elif request.method == "GET":
+    service_appointment = ServiceAppointment.objects.get(id=pk)
+    return JsonResponse(
+      service_appointment,
+      encoder=AppointmentDetailEncoder,
+      safe=False,
+    )
