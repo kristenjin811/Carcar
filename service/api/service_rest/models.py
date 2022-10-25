@@ -30,6 +30,7 @@ class ServiceAppointment(models.Model):
   )
   reason = models.CharField(max_length=500)
   VIP_treatment = models.BooleanField(default=False)
+  finished = models.BooleanField(default=False)
 
 
   def __str__(self):
