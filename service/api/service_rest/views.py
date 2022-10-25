@@ -125,7 +125,7 @@ def api_detail_appointment(request, pk):
 require_http_methods(["GET"])
 def api_service_history(request, pk):
   if request.method == "GET":
-    vin_appointments = ServiceAppointment.objects.filter(VIN = pk).order_by("time")
+    vin_appointments = ServiceAppointment.objects.filter(VIN=pk).order_by("time")
     return JsonResponse(
       vin_appointments,
       encoder = AppointmentListEncoder,
@@ -133,12 +133,12 @@ def api_service_history(request, pk):
     )
 
 
-# require_http_methods(["GET"])
-# def api_automobile_list(request):
-#   if request.method == "GET":
-#     automobiles = AutomobileVO.objects.all()
-#     return JsonResponse(
-#       automobiles,
-#       encoder=AutomobileVOEncoder,
-#       safe=False,
-#     )
+require_http_methods(["GET"])
+def api_automobile_list(request):
+  if request.method == "GET":
+    automobiles = AutomobileVO.objects.all()
+    return JsonResponse(
+      automobiles,
+      encoder=AutomobileVOEncoder,
+      safe=False,
+    )
