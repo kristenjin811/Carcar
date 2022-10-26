@@ -43,7 +43,7 @@ class TechnicianForm extends React.Component {
         employee_number: '',
       }
       this.setState(cleared)
-    } 
+    }
   }
 
   render () {
