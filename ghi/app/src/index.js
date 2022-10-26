@@ -4,20 +4,25 @@ import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-async function loadAppointments() {
+async function loadData() {
   const serviceResponse = await fetch("http://localhost:8080/api/service/")
-  console.log(serviceResponse)
-  if (serviceResponse.ok) {
-    let data = await serviceResponse.json()
-    console.log(data)
+  const modelResponse = await fetch("http://localhost:8100/api/models/")
+
+  const serviceData = await serviceResponse.json()
+  const modelData = await modelResponse.json()
+
+  if (serviceResponse.ok && modelResponse.ok) {
     root.render(
       <React.StrictMode>
-        <App service_appointments={data.service_appointments}/>
+        <App
+          service_appointments={serviceData.service_appointments}
+          models={modelData.models}
+        />
       </React.StrictMode>
     );
   } else {
-    console.error("response not ok", serviceResponse)
+    console.error("response not ok", serviceResponse, modelResponse)
   }
 }
 
-loadAppointments()
+loadData()
