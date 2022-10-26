@@ -49,8 +49,8 @@ class AppointmentList extends React.Component{
     render() {
       return (
       <>
-      <h1 className="mt-4 mb-2">Service appointments</h1>
-      <table className="table table-hover">
+      <h1>Service appointments</h1>
+      <table className="table table-striped table-hover">
         <thead>
         <tr>
           <th>VIN</th>
@@ -78,7 +78,7 @@ class AppointmentList extends React.Component{
                     <button type="button" onClick={() => this.handleClick(appointment.id, "DELETE")} className="btn btn-danger">
                       Cancel
                     </button>
-                    <button type="button" onClick={() => this.handleClick(appointment.id, "PUT")} className="btn btn-primary">
+                    <button type="button" onClick={() => this.handleClick(appointment.id, "PUT")} className="btn btn-success">
                       Finished
                     </button>
                   </div>
@@ -92,65 +92,5 @@ class AppointmentList extends React.Component{
       )
   }
 }
-
-
-
-
-// function AppointmentList(props){
-//   const removeAppointment = async(id) => {
-//     fetch(`http://localhost:8080/api/service/${id}`, {
-//       method: 'delete',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       }
-//     }).then(() => {
-//       window.appointment.reload()
-//     })
-//   }
-
-//   return (
-//     <>
-//     <h1>Service appointments</h1>
-//     <table className="table table-hover">
-//       <thead>
-//       <tr>
-//         <th>VIN</th>
-//         <th>Customer name</th>
-//         <th>Date</th>
-//         <th>Time</th>
-//         <th>Technician</th>
-//         <th>Reason</th>
-//       </tr>
-//       </thead>
-//       <tbody>
-//         {props.service_appointments.map((appointment, i) => {
-//           const date = new Date(appointment.time)
-//           return (
-//             <tr key={i}>
-//               <td> { appointment.VIN } </td>
-//               <td> { appointment.customer_name } </td>
-//               <td> { date.toLocaleDateString() } </td>
-//               <td> { date.toLocaleTimeString() } </td>
-//               <td> { appointment.technician.name } </td>
-//               <td> { appointment.reason } </td>
-//               <td>
-//                 <div className="btn-group btn-group-toggle" data-toggle="buttons">
-//                   <button type="button" onClick={() => removeAppointment(appointment.id)} className="btn btn-danger">
-//                     Cancel
-//                   </button>
-//                   <button type="button" className="btn btn-primary">
-//                     Finished
-//                   </button>
-//                 </div>
-//               </td>
-
-//             </tr>
-//           )
-//         })}
-//       </tbody>
-//     </table>
-//     </>
-//   )
-// }
 
 export default AppointmentList
