@@ -106,6 +106,14 @@ def api_detail_appointment(request, pk):
       encoder=AppointmentEncoder,
       safe=False,
     )
+  else: #PUT
+    ServiceAppointment.objects.filter(id=pk).update(finished=True)
+    appointment = ServiceAppointment.objects.get(id=pk)
+    return JsonResponse(
+      appointment,
+      encoder=AppointmentEncoder,
+      safe=False,
+    )
 
 
 require_http_methods(["GET"])

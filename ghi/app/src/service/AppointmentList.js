@@ -7,10 +7,27 @@ class AppointmentList extends React.Component{
     this.state = {
       service_appointments: []
     }
-    this.handleClick = this.handleClick.bind(this)
   }
+
+  async componentDidMount() {
+    const url = "http://localhost:8080/api/service/"
+    const response = await fetch(url)
+    if(response.ok) {
+      const data = await response.json()
+      console.log(data)
+      let appointments = data.service_appointments.filter(appointment => {
+        return (
+          appointment.finished === false
+          )
+        })
+        this.setState({service_appointments: appointments})
+      } else {
+        console.error("invalid request")
+      }
+    }
+
   async handleClick(id, method) {
-    const url = `http://localhost:8080/api/service/${id}`
+    const url = `http://localhost:8080/api/service/${id}/`
     var fetchConfig
     if (method === "DELETE") {
       fetchConfig = {
@@ -29,21 +46,8 @@ class AppointmentList extends React.Component{
     }
   }
 
-  async componentDidMount() {
-    const url = "http://localhost:8080/api/service/"
-    const response = await fetch(url)
-    if(response.ok) {
-      const data = await response.json()
-      console.log(data)
-      let appointments = data.service_appointments
-      this.setState({service_appointments: appointments})
-    } else {
-        console.error("invalid request")
-    }
-  }
-
-  render() {
-    return (
+    render() {
+      return (
       <>
       <h1 className="mt-4 mb-2">Service appointments</h1>
       <table className="table table-hover">
