@@ -121,7 +121,7 @@ def sales_record_list(request):
             "sales_person": SalesPerson.objects.get(
                 employee_id=content["sales_person"]
             ),
-            "automobiles": AutomobileVO.objects.get(vin=content["automobile"]),
+            "automobile": AutomobileVO.objects.get(vin=content["automobile"]),
             "customer": Customer.objects.get(name=content["customer"]),
         }
         print(content)

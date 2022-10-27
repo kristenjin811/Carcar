@@ -10,7 +10,7 @@ class SalesRecordForm extends React.Component {
             sales_person: '',
             customers: [],
             customer: '',
-            sales_price: "",
+            price: "",
         }
 
         this.handleAutomobileChange = this.handleAutomobileChange.bind(this)
@@ -22,9 +22,10 @@ class SalesRecordForm extends React.Component {
     async handleSubmit(event) {
         event.preventDefault()
         const data = { ...this.state }
-        // delete data.automobiles
-        // delete data.sales_persons
-        // delete data.customers
+        delete data.automobiles
+        delete data.sales_persons
+        delete data.customers
+
         const createSalesRecord = 'http://localhost:8090/api/salesrecords/'
         const fetchConfig = {
             method: 'post',
@@ -45,7 +46,7 @@ class SalesRecordForm extends React.Component {
             automobile: "",
             sales_person: "",
             customer: "",
-            sales_price: ""
+            price: ""
         }
         this.setState(cleared)
     }
@@ -68,16 +69,17 @@ class SalesRecordForm extends React.Component {
 
     handleSalesPriceChange(event) {
         const value = event.target.value
-        this.setState({ sales_price: value })
+        this.setState({ price: value })
     }
 
 
     async componentDidMount() {
-        const automobileURL = "http://localhost:8100/api/automobiles/"
+        const automobileURL = "http://localhost:8090/api/automobileVO/"
         const autoResponse = await fetch(automobileURL)
         if (autoResponse.ok) {
             const autoData = await autoResponse.json()
             this.setState({ automobiles: autoData.autos })
+            console.log('autodata:', autoData.autos)
         }
 
         const salespeopleURL = 'http://localhost:8090/api/salespersons/'
@@ -85,7 +87,6 @@ class SalesRecordForm extends React.Component {
         if (salesRepResponse.ok) {
             const salesRepData = await salesRepResponse.json()
             this.setState({ sales_persons: salesRepData.sales_persons })
-            console.log('sales rep data:', salesRepData.sales_persons)
 
         }
         const customerURL = 'http://localhost:8090/api/customers/'
@@ -145,8 +146,8 @@ class SalesRecordForm extends React.Component {
                                     </select>
                                 </div>
                                 <div className="form-floating mb-3">
-                                    <input onChange={this.handleSalesPriceChange} value={this.state.sales_price} placeholder="Sales Price" required type="text" name="sales_prices" id="sales_prices" className="form-control" />
-                                    <label htmlFor="sales_price">Sales Price</label>
+                                    <input onChange={this.handleSalesPriceChange} value={this.state.price} placeholder="Sales Price" required type="text" name="prices" id="prices" className="form-control" />
+                                    <label htmlFor="price">Sales Price</label>
                                 </div>
                                 <button className="btn btn-outline-dark">Create</button>
                             </form>
