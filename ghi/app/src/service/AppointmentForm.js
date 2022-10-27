@@ -10,7 +10,6 @@ class AppointmentForm extends React.Component {
       VIN: "",
       customer_name: "",
       time: "",
-      technician: "",
       technicians: [],
       reason: "",
     }
@@ -49,7 +48,7 @@ class AppointmentForm extends React.Component {
 
     const appointmentsUrl = 'http://localhost:8080/api/service/'
     const fetchConfig = {
-      method: "POST",
+      method: "post",
       body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json',
@@ -95,11 +94,11 @@ class AppointmentForm extends React.Component {
               <label htmlFor="VIN">VIN</label>
             </div>
             <div className="form-floating mb-3">
-              <input onChange={this.handleNameChange} value={this.state.name} placeholder="Customer name" required type="text" name="customer_name" id="customer_name" className="form-control"/>
+              <input onChange={this.handleNameChange} value={this.state.customer_name} placeholder="Customer name" required type="text" name="customer_name" id="customer_name" className="form-control"/>
               <label htmlFor="customer_name">Customer name</label>
             </div>
             <div className="form-floating mb-3">
-              <input onChange={this.handleTimeChange} value={this.state.time} placeholder="Schedule time" required type="text" name="time" id="time" className="form-control"/>
+              <input onChange={this.handleTimeChange} value={this.state.time} placeholder="Schedule time" required type="datetime-local" name="time" id="time" className="form-control"/>
               <label htmlFor="time">Time</label>
             </div>
             <div className="form-floating mb-3">
@@ -111,7 +110,7 @@ class AppointmentForm extends React.Component {
                 <option value="">Choose your technician</option>
                   {this.state.technicians.map(technician => {
                     return (
-                      <option value={technician.employee_number} key={technician.employee_number}>
+                      <option value={technician.id} key={technician.id}>
                         {technician.name}
                       </option>
                     )
