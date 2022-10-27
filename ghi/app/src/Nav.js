@@ -14,13 +14,19 @@ function Nav() {
               <NavLink className="navbar-brand" to="service/">Appointments</NavLink>
             </li>
             <li>
-              <NavLink className="navbar-brand" to="technicians/new/">New technician</NavLink>
+              <NavLink className="navbar-brand" to="service/new/">New appointment</NavLink>
             </li>
             <li>
               <NavLink className="navbar-brand" to="service/history/">Service History</NavLink>
             </li>
             <li>
-              <NavLink className="navbar-brand" to="service/new/">New appointment</NavLink>
+              <NavLink className="navbar-brand" to="technicians/new/">New technician</NavLink>
+            </li>
+            <li>
+              <NavLink className="navbar-brand" to="manufacturers/">Manufacturers</NavLink>
+            </li>
+            <li>
+              <NavLink className="navbar-brand" to="manufacturers/new/">Add a manufacturer</NavLink>
             </li>
           </ul>
         </div>

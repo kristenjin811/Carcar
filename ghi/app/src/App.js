@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import AppointmentList from './service/AppointmentList'
-import TechnicianForm from './service/TechnicianForm'
-import ServiceHistory from './service/ServiceHistory'
-import AppointmentForm from './service/AppointmentForm'
+import AppointmentList from './Autoservice/AppointmentList'
+import TechnicianForm from './Autoservice/TechnicianForm'
+import ServiceHistory from './Autoservice/ServiceHistory'
+import AppointmentForm from './Autoservice/AppointmentForm'
+import ManufacturerList from './Inventory/ManufacturerList'
+import ManufacturerForm from './Inventory/ManufacturerForm'
 import MainPage from './MainPage'
 import Nav from './Nav'
 
@@ -20,6 +22,8 @@ function App(props) {
           <Route path="service/history/" element={<ServiceHistory/>}/>
           <Route path="service/new/" element={<AppointmentForm/>}/>
           <Route path="service/" element={<AppointmentList service_appointments={props.service_appointments}/>}/>
+          <Route path="manufacturers/" element={<ManufacturerList manufacturers={props.manufacturers}/>}/>
+          <Route path="manufacturers/new/" element={<ManufacturerForm/>}/>
         </Routes>
       </div>
     </BrowserRouter>
