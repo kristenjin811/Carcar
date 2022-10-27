@@ -45,10 +45,10 @@ function Nav() {
             <NavLink className="dropdown-item" to="manufacturers/new/">Add a manufacturer</NavLink>
             </li>
             <li>
-              <NavLink className="dropdown-item" to="models/">Vehicles</NavLink>
+              {/* <NavLink className="dropdown-item" to="models/">Vehicles</NavLink> */}
             </li>
             <li>
-              <NavLink className="dropdown-item" to="models/new/">Add a vehicle</NavLink>
+              <NavLink className="dropdown-item" to="automobiles/new/">Add an automobile</NavLink>
             </li>
           </ul>
           </div>

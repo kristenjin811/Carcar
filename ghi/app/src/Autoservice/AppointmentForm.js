@@ -67,6 +67,9 @@ class AppointmentForm extends React.Component {
         reason: "",
       }
       this.setState(cleared)
+
+      alert('A form was submitted: ' + this.state.customer_name + ' // ' + this.state.time+ ' // ' + this.state.reason)
+
     } else {
       console.error("bad request")
     }

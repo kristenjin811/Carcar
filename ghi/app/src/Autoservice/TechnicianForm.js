@@ -44,6 +44,8 @@ class TechnicianForm extends React.Component {
       }
       this.setState(cleared)
     }
+    alert('A form was submitted: ' + this.state.name + ' // ' + this.state.employee_number)
+
   }
 
   render () {

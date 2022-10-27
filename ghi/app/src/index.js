@@ -8,12 +8,12 @@ async function loadData() {
   const serviceResponse = await fetch("http://localhost:8080/api/service/")
   const modelResponse = await fetch("http://localhost:8100/api/models/")
   const manufacturerResponse = await fetch("http://localhost:8100/api/manufacturers/")
-  const vehicleResponse = await fetch("http://localhost:8100/api/models/")
+  const automobilesResponse = await fetch("http://localhost:8100/api/automobiles/")
 
   const serviceData = await serviceResponse.json()
   const modelData = await modelResponse.json()
   const manufacturerData = await manufacturerResponse.json()
-  const vehicleData = await vehicleResponse.json()
+  const automobilesData = await automobilesResponse.json()
 
   if (serviceResponse.ok && modelResponse.ok) {
     root.render(
@@ -22,12 +22,12 @@ async function loadData() {
           service_appointments={serviceData.service_appointments}
           models={modelData.models}
           manufacturers={manufacturerData.manufacturers}
-          vehicles={vehicleData.models}
+          automobiles={automobilesData.autos}
         />
       </React.StrictMode>
     )
   } else {
-    console.error("response not ok", serviceResponse, modelResponse, manufacturerResponse, vehicleResponse)
+    console.error("response not ok", serviceResponse, modelResponse, manufacturerResponse, automobilesResponse)
   }
 }
 
