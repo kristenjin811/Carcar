@@ -7,6 +7,7 @@ import ModelForm from './inventory/ModelForm';
 import SalesList from './sales/SalesList';
 import SalesListByRep from './sales/SalesByRep';
 import CustomerForm from './sales/CustomerForm';
+import SalesRepForm from './sales/SalesRepForm';
 
 function App(props) {
   if (props.service_appointments === undefined
@@ -26,6 +27,7 @@ function App(props) {
           <Route path="sales/" element={<SalesList sales_records={props.sales_records} />} />
           <Route path="sales/rep" element={<SalesListByRep sales_records={props.sales_records} />} />
           <Route path="customer/" element={<CustomerForm />} />
+          <Route path="salesperson/" element={<SalesRepForm />} />
         </Routes>
       </div>
     </BrowserRouter>
