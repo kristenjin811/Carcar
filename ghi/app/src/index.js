@@ -12,8 +12,6 @@ async function loadData() {
   const serviceData = await serviceResponse.json()
   const modelData = await modelResponse.json()
   const salesData = await salesResponse.json()
-  console.log(salesData)
-  console.log(modelData)
 
   if (serviceResponse.ok && modelResponse.ok && salesResponse.ok) {
     root.render(

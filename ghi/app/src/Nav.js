@@ -6,8 +6,9 @@ function Nav() {
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">CarCar</NavLink>
         <NavLink className="navbar-brand" to="models/">Models</NavLink>
-        <NavLink className="navbar-brand" to="sales/">Sales</NavLink>
         <NavLink className="navbar-brand" to="service/">Appointments</NavLink>
+        <NavLink className="navbar-brand" to="sales/">All Sales</NavLink>
+        <NavLink className="navbar-brand" to="sales/rep">Rep's Sales</NavLink>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>

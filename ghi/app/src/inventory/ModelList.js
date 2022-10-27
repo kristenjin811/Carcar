@@ -12,8 +12,8 @@ function ModelList(props) {
                 <table className="table table-striped">
                     <thead>
                         <tr>
-                            <th>Name</th>
                             <th>Manufacturer</th>
+                            <th>Name</th>
                             <th className="d-flex justify-content-md-center">Image</th>
                         </tr>
                     </thead>
@@ -21,8 +21,8 @@ function ModelList(props) {
                         {props.models && props.models.map(model => {
                             return (
                                 <tr key={model.id}>
-                                    <td>{model.name}</td>
                                     <td>{model.manufacturer.name}</td>
+                                    <td>{model.name}</td>
                                     <td className="d-flex justify-content-md-center"><img height="75" width="250" className="img-fluid img-thumbnail" src={model.picture_url}></img> </td>
                                 </tr>
                             )

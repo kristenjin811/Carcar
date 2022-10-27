@@ -53,4 +53,4 @@ class SaleRecord(models.Model):
     price = models.PositiveIntegerField()
 
     def __str__(self):
-        return f"{self.sales_person} {self.price}"
+        return f"{self.customer} {self.automobile} {self.sales_person} {self.price}"
