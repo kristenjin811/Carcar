@@ -80,7 +80,7 @@ class AutomobileForm extends React.Component {
       const data = await response.json()
       this.setState({models: data.models})
     } else {
-      console.error("invalid request")
+      console.error("invalid vin: need to be unique!")
     }
   }
 
@@ -89,7 +89,7 @@ class AutomobileForm extends React.Component {
       <div className="row">
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
-          <h1 className="mt-3">Add a vehicle model</h1>
+          <h1 className="mt-3">Add an automobile</h1>
           <form onSubmit={this.handleSubmit} id="create-vehicle-model-form">
             <div className="form-floating mb-3">
               <input onChange={this.handleColorChange} value={this.state.color} placeholder="color" required type="text" name="color" id="color" className="form-control"/>
