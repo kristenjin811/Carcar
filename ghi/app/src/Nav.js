@@ -11,11 +11,11 @@ function Nav() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
 
         {/* first dropdown button starts here */}
-        <div class="btn-group">
-          <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Service appointments
+        <div className="btn-group">
+          <button type="button" className="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Service
           </button>
-          <ul class="dropdown-menu">
+          <ul className="dropdown-menu">
             <li>
               <NavLink className="dropdown-item" to="service/">Appointments</NavLink>
             </li>
@@ -25,7 +25,7 @@ function Nav() {
             <li>
               <NavLink className="dropdown-item" to="service/history/">Service History</NavLink>
             </li>
-            <li><hr class="dropdown-divider"/></li>
+            <li><hr className="dropdown-divider"/></li>
             <li>
               <NavLink className="dropdown-item" to="technicians/new/">New technician</NavLink>
             </li>
@@ -33,11 +33,11 @@ function Nav() {
         </div>
 
         {/* second dropdown button starts here */}
-        <div class="btn-group">
-          <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <div className="btn-group">
+          <button type="button" className="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             Inventory
           </button>
-          <ul class="dropdown-menu">
+          <ul className="dropdown-menu">
             <li>
             <NavLink className="dropdown-item" to="manufacturers/">Manufacturers</NavLink>
             </li>
@@ -45,10 +45,10 @@ function Nav() {
             <NavLink className="dropdown-item" to="manufacturers/new/">Add a manufacturer</NavLink>
             </li>
             <li>
-              <NavLink className="dropdown-item" to=""></NavLink>
+              <NavLink className="dropdown-item" to="models/">Vehicles</NavLink>
             </li>
             <li>
-              <NavLink className="dropdown-item" to=""></NavLink>
+              <NavLink className="dropdown-item" to="models/new/">Add a vehicle</NavLink>
             </li>
           </ul>
           </div>

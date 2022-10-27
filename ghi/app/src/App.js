@@ -5,6 +5,8 @@ import ServiceHistory from './Autoservice/ServiceHistory'
 import AppointmentForm from './Autoservice/AppointmentForm'
 import ManufacturerList from './Inventory/ManufacturerList'
 import ManufacturerForm from './Inventory/ManufacturerForm'
+import VehicleList from './Inventory/VehicleList'
+import VehicleForm from './Inventory/VehicleForm'
 import MainPage from './MainPage'
 import Nav from './Nav'
 
@@ -24,6 +26,9 @@ function App(props) {
           <Route path="service/" element={<AppointmentList service_appointments={props.service_appointments}/>}/>
           <Route path="manufacturers/" element={<ManufacturerList manufacturers={props.manufacturers}/>}/>
           <Route path="manufacturers/new/" element={<ManufacturerForm/>}/>
+          <Route path="models/" element={<VehicleList vehicles={props.models}/>}/>
+          <Route path="models/new/" element={<VehicleForm/>}/>
+
         </Routes>
       </div>
     </BrowserRouter>
