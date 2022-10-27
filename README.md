@@ -7,12 +7,19 @@ Team 👩‍💻
 
 ## Features
 CarCar provides the following features:
-- List of appointments
+- Show list of appointments
 - Create new appointment
-- List of past services for a vehicle
-- List of technicians
-- List of manufacturers
+- Show past services for a vehicle
+- Show list of technicians
+- Add new technician
+- Show list of manufacturers
 - Add new manufacturer
+- Show list of car models
+- Add new car model
+- Show list of automobiles
+- add new automobiles
+-
+-
 -
 -
 
@@ -23,7 +30,6 @@ You can get started with Carcar by setting up a local development environment.
 ### System Requirements
 - Docker
 - Git
-- Insomnia
 
 ### Initializing all the services
 To initialize all the services on a local development environment, including running a docker image for the DB and seeding the DB with the codes below.
@@ -34,23 +40,25 @@ docker-compose up
 ```
 
 ## Design
+"Sales", "Services", and "Inventory" are each in their own separate microservices. 
 
 
-
-
+# API Endpoints
 ## Service microservice
 
-Explain your models and integration with the inventory
-microservice, here.
+The service microservice has three models:
+- AutomobileVO:
+This is a value object which polls VIN from the Automobile model in the Inventory microservice. It is used to evaluate if a specific vehicle get VIP treatment at CarCar.
 
-## Sales microservice
-The sales microservice uses the RESTful API to handle automobile service appointments.
+- Technician:
+This is a simple model that contains the name and employee number of a techinician. An Employee number is unique to each technician. User can create a new technician on the webpage with just a name.
 
-The service microservice uses three models:
-- AutomobileVO - a value object representing an individual automobile
-- Technician
-- ServiceAppoinment
+- ServiceAppoinment:
+This is a model contains VIN, customer name, scheduled time, reason for visit, and technician(a foreign key) for an appointment. This model also indicates whether an appointment is finished, and whether the vehicle gets VIP treatment with two boolean properties named 'finsihed' and 'VIP_treatment".
 
 
 The service poller:
 - a poller to use to integrate with Inventory, specifically the Automobile modle
+
+## Sales microservice
+The sales microservice uses the RESTful API to handle automobile service appointments.
