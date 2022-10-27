@@ -1,3 +1,4 @@
+from unicodedata import name
 from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
 import json
@@ -117,10 +118,13 @@ def sales_record_list(request):
         content = json.loads(request.body)
         content = {
             **content,
-            "sales_person": SalesPerson.objects.get(pk=content["sales_person"]),
-            "automobile": AutomobileVO.objects.get(vin=content["automobile"]),
-            "customer": Customer.objects.get(pk=content["customer"]),
+            "sales_person": SalesPerson.objects.get(
+                employee_id=content["sales_person"]
+            ),
+            "automobiles": AutomobileVO.objects.get(vin=content["automobile"]),
+            "customer": Customer.objects.get(name=content["customer"]),
         }
+        print(content)
         sales_record = SaleRecord.objects.create(**content)
         return JsonResponse(
             {"sales_record": sales_record},

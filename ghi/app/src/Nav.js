@@ -8,6 +8,7 @@ function Nav() {
         <NavLink className="navbar-brand" to="models/">Models</NavLink>
         <NavLink className="navbar-brand" to="service/">Appointments</NavLink>
         <NavLink className="navbar-brand" to="sales/">All Sales</NavLink>
+        <NavLink className="navbar-brand" to="sales/new">Add Sale</NavLink>
         <NavLink className="navbar-brand" to="sales/rep">Rep's Sales</NavLink>
         <NavLink className="navbar-brand" to="customer/">Add Customer</NavLink>
         <NavLink className="navbar-brand" to="salesperson/">Add Sales Rep</NavLink>
