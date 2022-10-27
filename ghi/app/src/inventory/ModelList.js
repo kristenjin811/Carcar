@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 function ModelList(props) {
     return (
         <>
-            <h2>Vehicle Models</h2>
+            <h1>Vehicle Models</h1>
             <button className="btn btn-outline-dark">
                 <NavLink className="nav-link" to="/models/new">Create</NavLink>
             </button>

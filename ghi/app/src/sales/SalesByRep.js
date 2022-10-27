@@ -57,7 +57,7 @@ class SalesListByRep extends React.Component {
     render() {
         return (
             <>
-                <h2>Representative's Sales</h2>
+                <h1>Representative's Sales</h1>
                 <div>
                     <select className="form-select"
                         onChange={this.handleSalesRepChange} value={this.state.sales_person}

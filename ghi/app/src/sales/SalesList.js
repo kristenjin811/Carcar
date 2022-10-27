@@ -3,7 +3,7 @@ import React from 'react';
 function SalesList(props) {
     return (
         <>
-            <h2>All Sales</h2>
+            <h1>All Sales</h1>
             <div className="container">
                 <table className="table table-striped">
                     <thead>
