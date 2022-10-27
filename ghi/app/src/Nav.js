@@ -9,26 +9,49 @@ function Nav() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+
+        {/* first dropdown button starts here */}
+        <div class="btn-group">
+          <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Service appointments
+          </button>
+          <ul class="dropdown-menu">
             <li>
-              <NavLink className="navbar-brand" to="service/">Appointments</NavLink>
+              <NavLink className="dropdown-item" to="service/">Appointments</NavLink>
             </li>
             <li>
-              <NavLink className="navbar-brand" to="service/new/">New appointment</NavLink>
+              <NavLink className="dropdown-item" to="service/new/">New appointment</NavLink>
             </li>
             <li>
-              <NavLink className="navbar-brand" to="service/history/">Service History</NavLink>
+              <NavLink className="dropdown-item" to="service/history/">Service History</NavLink>
             </li>
+            <li><hr class="dropdown-divider"/></li>
             <li>
-              <NavLink className="navbar-brand" to="technicians/new/">New technician</NavLink>
-            </li>
-            <li>
-              <NavLink className="navbar-brand" to="manufacturers/">Manufacturers</NavLink>
-            </li>
-            <li>
-              <NavLink className="navbar-brand" to="manufacturers/new/">Add a manufacturer</NavLink>
+              <NavLink className="dropdown-item" to="technicians/new/">New technician</NavLink>
             </li>
           </ul>
+        </div>
+
+        {/* second dropdown button starts here */}
+        <div class="btn-group">
+          <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Inventory
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+            <NavLink className="dropdown-item" to="manufacturers/">Manufacturers</NavLink>
+            </li>
+            <li>
+            <NavLink className="dropdown-item" to="manufacturers/new/">Add a manufacturer</NavLink>
+            </li>
+            <li>
+              <NavLink className="dropdown-item" to=""></NavLink>
+            </li>
+            <li>
+              <NavLink className="dropdown-item" to=""></NavLink>
+            </li>
+          </ul>
+          </div>
         </div>
       </div>
     </nav>
