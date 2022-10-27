@@ -7,31 +7,12 @@ from django.http import JsonResponse
 # Create your views here.
 
 
-class TechnicianListEncoder(ModelEncoder):
+class TechnicianEncoder(ModelEncoder):
   model = Technician
-  properties = ["name"]
+  properties = ["name", "employee_number", "id"]
 
 
-class TechnicianDetailEncoder(ModelEncoder):
-  model = Technician
-  properties = ["name", "employee_number"]
-
-
-class AppointmentListEncoder(ModelEncoder):
-  model = ServiceAppointment
-  properties = [
-    "VIN",
-    "customer_name",
-    "time",
-    "technician",
-    "reason"
-    ]
-  encoders = {
-    "technician": TechnicianListEncoder(),
-  }
-
-
-class AppointmentDetailEncoder(ModelEncoder):
+class AppointmentEncoder(ModelEncoder):
   model = ServiceAppointment
   properties = [
     "id",
@@ -44,13 +25,13 @@ class AppointmentDetailEncoder(ModelEncoder):
     "finished"
     ]
   encoders = {
-    "technician": TechnicianListEncoder(),
+    "technician": TechnicianEncoder(),
   }
 
 
 class AutomobileVOEncoder(ModelEncoder):
   model = AutomobileVO
-  properties = ["vin", "import_href"]
+  properties = ["vin"]
 
 
 require_http_methods(["GET", "POST"])
@@ -59,14 +40,14 @@ def api_list_technicians(request):
     technicians = Technician.objects.all()
     return JsonResponse(
       {"technicians": technicians},
-      encoder = TechnicianDetailEncoder,
+      encoder = TechnicianEncoder,
     )
   else:
     content = json.loads(request.body)
     technician = Technician.objects.create(**content)
     return JsonResponse(
       {"technician": technician},
-      encoder=TechnicianDetailEncoder,
+      encoder=TechnicianEncoder,
       safe=False,
     )
 
@@ -79,14 +60,13 @@ def api_list_appointments(request):
     service_appointments = ServiceAppointment.objects.all().order_by("time")
     return JsonResponse(
       {"service_appointments": service_appointments},
-      encoder = AppointmentListEncoder,
+      encoder = AppointmentEncoder,
     )
   else:
     content = json.loads(request.body)
 
     try:
       AutomobileVO.objects.get(vin=content["VIN"])
-      print(":::", content)
       content["VIP_treatment"] = True
     except AutomobileVO.DoesNotExist:
       content["VIP_treatment"] = False
@@ -103,7 +83,7 @@ def api_list_appointments(request):
     service_appointment = ServiceAppointment.objects.create(**content)
     return JsonResponse(
       service_appointment,
-      encoder=AppointmentDetailEncoder,
+      encoder=AppointmentEncoder,
       safe=False,
     )
 
@@ -117,7 +97,15 @@ def api_detail_appointment(request, pk):
     service_appointment = ServiceAppointment.objects.get(id=pk)
     return JsonResponse(
       service_appointment,
-      encoder=AppointmentDetailEncoder,
+      encoder=AppointmentEncoder,
+      safe=False,
+    )
+  else: #PUT
+    ServiceAppointment.objects.filter(id=pk).update(finished=True)
+    appointment = ServiceAppointment.objects.get(id=pk)
+    return JsonResponse(
+      appointment,
+      encoder=AppointmentEncoder,
       safe=False,
     )
 
@@ -128,7 +116,7 @@ def api_service_history(request, pk):
     vin_appointments = ServiceAppointment.objects.filter(VIN=pk).order_by("time")
     return JsonResponse(
       vin_appointments,
-      encoder = AppointmentListEncoder,
+      encoder = AppointmentEncoder,
       safe=False,
     )
 
