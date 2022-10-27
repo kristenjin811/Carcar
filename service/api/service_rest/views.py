@@ -7,14 +7,9 @@ from django.http import JsonResponse
 # Create your views here.
 
 
-class TechnicianListEncoder(ModelEncoder):
+class TechnicianEncoder(ModelEncoder):
   model = Technician
-  properties = ["name"]
-
-
-class TechnicianDetailEncoder(ModelEncoder):
-  model = Technician
-  properties = ["name", "employee_number"]
+  properties = ["name", "employee_number", "id"]
 
 
 class AppointmentEncoder(ModelEncoder):
@@ -30,13 +25,13 @@ class AppointmentEncoder(ModelEncoder):
     "finished"
     ]
   encoders = {
-    "technician": TechnicianListEncoder(),
+    "technician": TechnicianEncoder(),
   }
 
 
 class AutomobileVOEncoder(ModelEncoder):
   model = AutomobileVO
-  properties = ["vin", "import_href"]
+  properties = ["vin"]
 
 
 require_http_methods(["GET", "POST"])
@@ -45,14 +40,14 @@ def api_list_technicians(request):
     technicians = Technician.objects.all()
     return JsonResponse(
       {"technicians": technicians},
-      encoder = TechnicianDetailEncoder,
+      encoder = TechnicianEncoder,
     )
   else:
     content = json.loads(request.body)
     technician = Technician.objects.create(**content)
     return JsonResponse(
       {"technician": technician},
-      encoder=TechnicianDetailEncoder,
+      encoder=TechnicianEncoder,
       safe=False,
     )
 
@@ -72,7 +67,6 @@ def api_list_appointments(request):
 
     try:
       AutomobileVO.objects.get(vin=content["VIN"])
-      print(":::", content)
       content["VIP_treatment"] = True
     except AutomobileVO.DoesNotExist:
       content["VIP_treatment"] = False

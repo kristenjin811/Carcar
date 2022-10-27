@@ -49,7 +49,7 @@ class AppointmentList extends React.Component{
     render() {
       return (
       <>
-      <h1>Service appointments</h1>
+      <h1 className="mt-3">Service appointments</h1>
       <table className="table table-striped table-hover">
         <thead>
         <tr>

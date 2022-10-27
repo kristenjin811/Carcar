@@ -17,9 +17,11 @@ function Nav() {
               <NavLink className="navbar-brand" to="technicians/new/">New technician</NavLink>
             </li>
             <li>
-              <NavLink className="navbar-brand" to="service/history">Service History</NavLink>
+              <NavLink className="navbar-brand" to="service/history/">Service History</NavLink>
             </li>
-
+            <li>
+              <NavLink className="navbar-brand" to="service/new/">New appointment</NavLink>
+            </li>
           </ul>
         </div>
       </div>
