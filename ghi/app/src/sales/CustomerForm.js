@@ -6,7 +6,7 @@ class CustomerForm extends React.Component {
         this.state = {
             name: '',
             address: '',
-            phoneNumber: ''
+            phoneNumber: '',
         }
         this.handleNameChange = this.handleNameChange.bind(this)
         this.handleAddressChange = this.handleAddressChange.bind(this)
@@ -36,7 +36,7 @@ class CustomerForm extends React.Component {
         const cleared = {
             name: '',
             address: '',
-            phoneNumber: ''
+            phoneNumber: '',
         }
         this.setState(cleared)
     }
@@ -58,6 +58,12 @@ class CustomerForm extends React.Component {
 
 
     render() {
+
+        let successMessageClass = 'alert alert-success d-none mb-0'
+        if (this.state.submitted) {
+            successMessageClass = 'alert alert-success mb-0'
+        }
+
         return (
             <>
                 <div className="row">
@@ -79,6 +85,10 @@ class CustomerForm extends React.Component {
                                 </div>
                                 <button className="btn btn-outline-dark">Create</button>
                             </form>
+                        </div>
+                        <br></br>
+                        <div className={successMessageClass} id="success-message">
+                            <p>Customer Added!</p>
                         </div>
                     </div>
                 </div>
