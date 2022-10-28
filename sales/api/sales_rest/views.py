@@ -94,14 +94,14 @@ def customer_list(request):
             safe=False,
         )
     else:
-        try:
-            content = json.loads(request.body)
-            customer = Customer.objects.create(**content)
-            return JsonResponse(customer, encoder=CustomerEncoder, safe=False)
-        except:
-            response = JsonResponse({"message": "Customer cannot be created."})
-            response.status_code = 400
-            return response
+        # try:
+        content = json.loads(request.body)
+        customer = Customer.objects.create(**content)
+        return JsonResponse(customer, encoder=CustomerEncoder, safe=False)
+    # except:
+    #     response = JsonResponse({"message": "Customer cannot be created."})
+    #     response.status_code = 400
+    #     return response
 
 
 @require_http_methods(["GET", "POST"])

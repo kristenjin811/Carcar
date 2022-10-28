@@ -6,7 +6,7 @@ class CustomerForm extends React.Component {
         this.state = {
             name: '',
             address: '',
-            phoneNumber: '',
+            phone_number: '',
         }
         this.handleNameChange = this.handleNameChange.bind(this)
         this.handleAddressChange = this.handleAddressChange.bind(this)
@@ -16,8 +16,8 @@ class CustomerForm extends React.Component {
     async handleSubmit(event) {
         event.preventDefault()
         const data = { ...this.state }
-        data.phone_number = data.phoneNumber
-        delete data.phoneNumber
+        console.log(data)
+
         const customerURL = 'http://localhost:8090/api/customers/'
         const fetchConfig = {
             method: 'post',
@@ -28,6 +28,7 @@ class CustomerForm extends React.Component {
         }
 
         const response = await fetch(customerURL, fetchConfig)
+        console.log('response:', response)
         if (response.ok) {
             const newCustomer = await response.json()
             console.log(newCustomer)
@@ -36,7 +37,7 @@ class CustomerForm extends React.Component {
         const cleared = {
             name: '',
             address: '',
-            phoneNumber: '',
+            phone_number: '',
         }
         this.setState(cleared)
     }
@@ -52,17 +53,17 @@ class CustomerForm extends React.Component {
 
     handlePhoneNumberChange(event) {
         const value = event.target.value
-        this.setState({ phoneNumber: value })
+        this.setState({ phone_number: value })
     }
 
 
 
     render() {
 
-        let successMessageClass = 'alert alert-success d-none mb-0'
-        if (this.state.submitted) {
-            successMessageClass = 'alert alert-success mb-0'
-        }
+        // let successMessageClass = 'alert alert-success d-none mb-0'
+        // if (this.state.submitted) {
+        //     successMessageClass = 'alert alert-success mb-0'
+        // }
 
         return (
             <>
@@ -80,16 +81,16 @@ class CustomerForm extends React.Component {
                                     <label htmlFor="address">Address</label>
                                 </div>
                                 <div className="form-floating mb-3">
-                                    <input onChange={this.handlePhoneNumberChange} value={this.state.phoneNumber} placeholder="Phone Number" required type="text" name="phoneNumber" id="phoneNumber" className="form-control" />
+                                    <input onChange={this.handlePhoneNumberChange} value={this.state.phone_number} placeholder="Phone Number" required type="text" name="phoneNumber" id="phoneNumber" className="form-control" />
                                     <label htmlFor="phoneNumber">Phone Number</label>
                                 </div>
                                 <button className="btn btn-outline-dark">Create</button>
                             </form>
                         </div>
-                        <br></br>
+                        {/* <br></br>
                         <div className={successMessageClass} id="success-message">
                             <p>Customer Added!</p>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </>
