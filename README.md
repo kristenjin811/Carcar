@@ -90,10 +90,10 @@ List of appointments:
 - Each appointment in the list of appointments has a button that allows the user to cancel the appointment, or to show that the service appointment has been finished. When a service appointment is canceled or finished, it should no longer show up in the list of appointments.
 - User can access the function from http://localhost:3000/service/ in the application.
 From Insomnia and your browser, user can access the appointments endpoints at the following URLs.
-    List appointments	GET	http://localhost:8080/api/appointments/
-    Get a specific appointment	GET	http://localhost:8080/api/appointments/${id}/
-    Update a specific appointment	PUT	http://localhost:8080/api/appointments/${id}/
-    Delete a specific appointment	DELETE	http://localhost:8080/api/appointments/${id}/
+1. List appointments	GET	http://localhost:8080/api/appointments/
+2. Get a specific appointment	GET	http://localhost:8080/api/appointments/${id}/
+3. Update a specific appointment	PUT	http://localhost:8080/api/appointments/${id}/
+4. Delete a specific appointment	DELETE	http://localhost:8080/api/appointments/${id}/
 <img src="list of appointments.png" alt="Alt text" title="list of appointments">
 
 
@@ -101,7 +101,7 @@ Service history:
 - User can search for a service history for a specific VIN. The page that has an input that allows the user to type in the VIN. On form submission, fetch all of the service appointments for an automobile with the VIN in the input. Then, show that list of service appointments to include the customer name, date and time of the appointment, the assigned technician's name, and the reason for the service.
 - User can access the function from http://localhost:8080/service/history/ in the application.
 - From Insomnia, user can access the service history endpoints at the following URLs.
-    Get the service history for specific manufacturer	```GET```	 http://localhost:8080/api/service/history/${VIN}/
+1. Get the service history for specific manufacturer	```GET```	 http://localhost:8080/api/service/history/${VIN}/
 <img src="service appointments.png" alt="Alt text" title="service appointments">
 
 
