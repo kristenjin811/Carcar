@@ -5,7 +5,7 @@
 * Rachel Johnson - Sales microservice
 * Wenqi Jin - Service microservice
 
-## Features
+## Features ✨✨✨
 **CarCar provides the following features:**
 - Show list of appointments
 - Create new appointment
@@ -35,7 +35,7 @@ URLS to access the inventory API:
 - http://localhost:8100/api/automobiles/
 
 
-## Getting Started
+## Getting Started 🏁
 You can get started with Carcar by setting up a local development environment.
 
 ## Development Environment(Local)
@@ -61,7 +61,7 @@ docker-compose up
 The Service microservice keeps track of service appointments for automobiles and their owners.
 The service API runs on port 8080.
 
-### Functionality
+### Functionality 📕
 **Enter a technician:**
 - User can use a form to enter an automobitive technician's name and employee number. When the form is submitted, the automotive technician is created in the application. A success-message-alert will show in the window.
 - User can access the function from http://localhost:8080/technicians/new/ in the application.
