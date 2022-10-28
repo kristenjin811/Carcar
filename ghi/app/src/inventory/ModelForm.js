@@ -8,6 +8,7 @@ class ModelForm extends React.Component {
             picture_url: '',
             manufacturer: '',
             manufacturers: [],
+            submitted: false,
         }
         this.handleNameChange = this.handleNameChange.bind(this)
         this.handlePictureURLChange = this.handlePictureURLChange.bind(this)
@@ -20,6 +21,7 @@ class ModelForm extends React.Component {
         const data = { ...this.state }
         data.manufacturer_id = data.manufacturer
         delete data.manufacturers
+        delete data.submitted
 
         const modelURL = 'http://localhost:8100/api/models/'
         const fetchConfig = {
@@ -38,7 +40,8 @@ class ModelForm extends React.Component {
             const cleared = {
                 name: "",
                 picture_url: "",
-                manufacturer: ""
+                manufacturer: "",
+                submitted: true
             }
             this.setState(cleared)
         }
@@ -71,6 +74,12 @@ class ModelForm extends React.Component {
     }
 
     render() {
+
+        let successMessageClass = 'alert alert-success d-none mb-0'
+        if (this.state.submitted) {
+            successMessageClass = 'alert alert-success mb-0'
+        }
+
         return (
             <>
                 <div className="row">
@@ -100,6 +109,10 @@ class ModelForm extends React.Component {
                                 </div>
                                 <button className="btn btn-outline-dark">Create</button>
                             </form>
+                        </div>
+                        <br></br>
+                        <div className={successMessageClass} id="success-message">
+                            <p>Vehicle model added successfully!</p>
                         </div>
                     </div>
                 </div>

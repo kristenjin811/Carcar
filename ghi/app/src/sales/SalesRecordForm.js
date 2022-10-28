@@ -11,6 +11,7 @@ class SalesRecordForm extends React.Component {
             customers: [],
             customer: '',
             price: "",
+            submitted: false
         }
 
         this.handleAutomobileChange = this.handleAutomobileChange.bind(this)
@@ -25,6 +26,7 @@ class SalesRecordForm extends React.Component {
         delete data.automobiles
         delete data.sales_persons
         delete data.customers
+        delete data.submitted
 
         const createSalesRecord = 'http://localhost:8090/api/salesrecords/'
         const fetchConfig = {
@@ -36,14 +38,14 @@ class SalesRecordForm extends React.Component {
         }
 
         const response = await fetch(createSalesRecord, fetchConfig)
-        console.log('fetchresposnse', response)
+
         if (response.ok) {
             const newSalesRecord = await response.json()
             console.log(newSalesRecord)
             let soldAutoIndex = this.state.automobiles.findIndex(auto => data.automobile === auto.vin)
-            console.log(data.automobile)
+
             let automobiles = [...this.state.automobiles]
-            console.log(soldAutoIndex, automobiles)
+
             automobiles[soldAutoIndex].has_sold = true
             this.setState({ automobiles })
         }
@@ -53,7 +55,8 @@ class SalesRecordForm extends React.Component {
             automobile: "",
             sales_person: "",
             customer: "",
-            price: ""
+            price: "",
+            submitted: true
         }
         this.setState(cleared)
     }
@@ -86,7 +89,6 @@ class SalesRecordForm extends React.Component {
         if (autoResponse.ok) {
             const autoData = await autoResponse.json()
             this.setState({ automobiles: autoData.autos })
-            console.log('autodata:', autoData.autos)
         }
 
         const salespeopleURL = 'http://localhost:8090/api/salespersons/'
@@ -107,6 +109,12 @@ class SalesRecordForm extends React.Component {
 
 
     render() {
+
+        let successMessageClass = 'alert alert-success d-none mb-0'
+        if (this.state.submitted) {
+            successMessageClass = 'alert alert-success mb-0'
+        }
+
         return (
             <>
                 <div className="row">
@@ -159,6 +167,10 @@ class SalesRecordForm extends React.Component {
                                 </div>
                                 <button className="btn btn-outline-dark">Create</button>
                             </form>
+                        </div>
+                        <br></br>
+                        <div className={successMessageClass} id="success-message">
+                            <p>Transaction added successfully!</p>
                         </div>
                     </div>
                 </div >

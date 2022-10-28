@@ -7,6 +7,7 @@ class CustomerForm extends React.Component {
             name: '',
             address: '',
             phone_number: '',
+            submitted: false,
         }
         this.handleNameChange = this.handleNameChange.bind(this)
         this.handleAddressChange = this.handleAddressChange.bind(this)
@@ -16,7 +17,7 @@ class CustomerForm extends React.Component {
     async handleSubmit(event) {
         event.preventDefault()
         const data = { ...this.state }
-        console.log(data)
+        delete data.submitted
 
         const customerURL = 'http://localhost:8090/api/customers/'
         const fetchConfig = {
@@ -38,6 +39,7 @@ class CustomerForm extends React.Component {
             name: '',
             address: '',
             phone_number: '',
+            submitted: true,
         }
         this.setState(cleared)
     }
@@ -60,10 +62,10 @@ class CustomerForm extends React.Component {
 
     render() {
 
-        // let successMessageClass = 'alert alert-success d-none mb-0'
-        // if (this.state.submitted) {
-        //     successMessageClass = 'alert alert-success mb-0'
-        // }
+        let successMessageClass = 'alert alert-success d-none mb-0'
+        if (this.state.submitted) {
+            successMessageClass = 'alert alert-success mb-0'
+        }
 
         return (
             <>
@@ -87,10 +89,10 @@ class CustomerForm extends React.Component {
                                 <button className="btn btn-outline-dark">Create</button>
                             </form>
                         </div>
-                        {/* <br></br>
+                        <br></br>
                         <div className={successMessageClass} id="success-message">
-                            <p>Customer Added!</p>
-                        </div> */}
+                            <p>Customer added successfully!</p>
+                        </div>
                     </div>
                 </div>
             </>

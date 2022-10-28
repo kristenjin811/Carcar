@@ -6,6 +6,7 @@ class SalesRepForm extends React.Component {
         this.state = {
             name: '',
             employee_id: '',
+            submitted: false,
         }
         this.handleNameChange = this.handleNameChange.bind(this)
         this.handleEmployeeIDChange = this.handleEmployeeIDChange.bind(this)
@@ -14,6 +15,7 @@ class SalesRepForm extends React.Component {
     async handleSubmit(event) {
         event.preventDefault()
         const data = { ...this.state }
+        delete data.submitted
         const salesRepURL = 'http://localhost:8090/api/salespersons/'
         const fetchConfig = {
             method: 'post',
@@ -32,6 +34,7 @@ class SalesRepForm extends React.Component {
         const cleared = {
             name: '',
             employee_id: '',
+            submitted: true,
         }
         this.setState(cleared)
     }
@@ -46,6 +49,12 @@ class SalesRepForm extends React.Component {
         this.setState({ employee_id: value })
     }
     render() {
+
+        let successMessageClass = 'alert alert-success d-none mb-0'
+        if (this.state.submitted) {
+            successMessageClass = 'alert alert-success mb-0'
+        }
+
         return (
             <>
                 <div className="row">
@@ -63,6 +72,10 @@ class SalesRepForm extends React.Component {
                                 </div>
                                 <button className="btn btn-outline-dark">Create</button>
                             </form>
+                        </div>
+                        <br></br>
+                        <div className={successMessageClass} id="success-message">
+                            <p>Sales representative added successfully</p>
                         </div>
                     </div>
                 </div>
