@@ -7,12 +7,13 @@ import ModelForm from './Inventory/ModelForm'
 import ManufacturerList from './Inventory/ManufacturerList'
 import ManufacturerForm from './Inventory/ManufacturerForm'
 import AutomobileForm from './Inventory/AutomobileForm'
+import AutomobileList from './Inventory/AutomobileList'
 
-import SalesList from './sales/SalesList'
-import SalesListByRep from './sales/SalesByRep'
-import CustomerForm from './sales/CustomerForm'
-import SalesRepForm from './sales/SalesRepForm'
-import SalesRecordForm from './sales/SalesRecordForm'
+import SalesList from './Sales/SalesList'
+import SalesListByRep from './Sales/SalesByRep'
+import CustomerForm from './Sales/CustomerForm'
+import SalesRepForm from './Sales/SalesRepForm'
+import SalesRecordForm from './Sales/SalesRecordForm'
 
 import AppointmentList from './Autoservice/AppointmentList'
 import TechnicianForm from './Autoservice/TechnicianForm'
@@ -45,8 +46,8 @@ function App(props) {
           <Route path="manufacturers/" element={<ManufacturerList manufacturers={props.manufacturers} />} />
           <Route path="manufacturers/new/" element={<ManufacturerForm />} />
 
-          <Route path="automobiles/new/" element={<AutomobileForm />} />
-          <Route path="automobiles/" element={<AutomobileForm automobiles={props.autos} />} />
+          <Route path="automobiles/" element={<AutomobileList automobiles={props.automobiles} />} />
+          <Route path="automobiles/new/" element={<AutomobileForm automobiles={props.autos} />} />
 
           <Route path="models/" element={<ModelList models={props.models} />} />
           <Route path="models/new/" element={<ModelForm />} />
