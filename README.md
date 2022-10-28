@@ -1,12 +1,12 @@
 # CarCar 🚗
 
-Team 👩‍💻
+**Team 👩‍💻**
 
 * Rachel Johnson - Sales microservice
 * Wenqi Jin - Service microservice
 
 ## Features
-CarCar provides the following features:
+**CarCar provides the following features:**
 - Show list of appointments
 - Create new appointment
 - Show past services for a vehicle
@@ -59,14 +59,10 @@ docker-compose up
 # API Endpoints
 ## Service microservice
 The Service microservice keeps track of service appointments for automobiles and their owners.
-
 The service API runs on port 8080.
-URLs to access the service API:
-- http://localhost:8080/api/service/
-- http://localhost:8080/api/techinicans/
 
 ### Functionality
-Enter a technician:
+**Enter a technician:**
 - User can use a form to enter an automobitive technician's name and employee number. When the form is submitted, the automotive technician is created in the application. A success-message-alert will show in the window.
 - User can access the function from http://localhost:8080/technicians/new/ in the application.
 - From Insomnia, user can access the technician endpoints at the following URLs.
@@ -75,8 +71,7 @@ Enter a technician:
 <img src="createtechnician.png" alt="Alt text" title="create technician">
 
 
-
-Enter a service appointment:
+**Enter a service appointment:**
 - User can enter the VIN of the vehicle, the name of the owner, the date and time of the appointment, the assigned technician, and a reason for visit. When the form is submitted, the service appointment is created and saved in the application. A success-message-alert will show in the window.
 - User can access the function from http://localhost:8080/service/new/ in the application.
 - From Insomnia, user can access the appointments endpoints at the following URLs.
@@ -84,7 +79,7 @@ Enter a service appointment:
 <img src="createappointment.png" alt="Alt text" title="create appointment">
 
 
-List of appointments:
+**List of appointments:**
 - User can see a list of scheduled appointments that contain the details collected in the form: VIN, customer name, date and time of the appointment, the assigned technician's name, and the reason for the service.
 - If the VIN is for an automobile that was at one time in the inventory, then the automobile was purchased from the dealership. The list of scheduled appointments in the backend will show that the automobile can get "VIP treatment".
 - Each appointment in the list of appointments has a button that allows the user to cancel the appointment, or to show that the service appointment has been finished. When a service appointment is canceled or finished, it should no longer show up in the list of appointments.
@@ -97,7 +92,7 @@ From Insomnia and your browser, user can access the appointments endpoints at th
 <img src="list of appointments.png" alt="Alt text" title="list of appointments">
 
 
-Service history:
+**Service history:**
 - User can search for a service history for a specific VIN. The page that has an input that allows the user to type in the VIN. On form submission, fetch all of the service appointments for an automobile with the VIN in the input. Then, show that list of service appointments to include the customer name, date and time of the appointment, the assigned technician's name, and the reason for the service.
 - User can access the function from http://localhost:8080/service/history/ in the application.
 - From Insomnia, user can access the service history endpoints at the following URLs.
@@ -156,7 +151,8 @@ The sales microservice uses four models:
 The Inventory microservice is a fully-accessible Inventory API that can keep track of the automobile inventory for the automobile dealership.
 
 It has fully functional RESTful endpoints for the following entities:
-- Manufacturer: the company that manufactures the automobile
+### Manufacturer:
+- the company that manufactures the automobile
 From Insomnia and your browser, you can access the manufacturer endpoints at the following URLs.
 - List manufacturers	GET	http://localhost:8100/api/manufacturers/
 - Create a manufacturer	POST	http://localhost:8100/api/manufacturers/
@@ -166,7 +162,8 @@ From Insomnia and your browser, you can access the manufacturer endpoints at the
 <img src="manufacturers.png" alt="Alt text" title="manufacturers">
 <img src="createmanufacturer.png" alt="Alt text" title="create manufacturer">
 
-- VehicleModel: the model of a vehicle created by the manufacturer
+### VehicleModel
+- the model of a vehicle created by the manufacturer
 From Insomnia and your browser, you can access the vehicle model endpoints at the following URLs.
 - List vehicle models	GET	http://localhost:8100/api/models/
 - Create a vehicle model	POST	http://localhost:8100/api/models/
@@ -176,7 +173,8 @@ From Insomnia and your browser, you can access the vehicle model endpoints at th
 <img src="vehiclemodels.png" alt="Alt text" title="vehicle models">
 <img src="createvehiclemodel.png" alt="Alt text" title="create vehicle model">
 
-- Automobile: the actual automobile of a specific vehicle model
+### Automobile
+- the actual automobile of a specific vehicle model
 From Insomnia and your browser, you can access the automobile endpoints at the following URLs.
 - List automobiles	GET	http://localhost:8100/api/automobiles/
 - Create an automobile	POST	http://localhost:8100/api/automobiles/
