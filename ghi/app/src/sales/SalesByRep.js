@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 class SalesListByRep extends React.Component {
     constructor(props) {
@@ -29,30 +29,7 @@ class SalesListByRep extends React.Component {
         const value = event.target.value
         this.setState({ sales_person: value })
 
-        // const saleURL = 'http://localhost:8090/api/salesrecords/'
-        // const saleResponse = await fetch(saleURL)
-        // console.log('response:', saleResponse)
-
-
-        // if (saleResponse.ok) {
-        //     const saleData = await saleResponse.json()
-        //     console.log('sale records:', saleData)
-
-        //     if (this.state.sales_person === '') {
-        //         this.setState({ sales_records: saleData.sales_records })
-        //         console.log('the sales:', saleData.sales_records)
-        //     } else {
-        //         let filteredSaleList = []
-        //         for (let sale of saleData.sales_records) {
-        //             if (String(sale.sales_person.employee_id) === this.state.sales_person) {
-        //                 filteredSaleList.push(sale)
-        //             }
-        //         }
-        //         this.setState({ saleData: filteredSaleList })
-        //     }
-        // }
     }
-
 
     render() {
         return (
@@ -61,8 +38,7 @@ class SalesListByRep extends React.Component {
                 <div>
                     <select className="form-select"
                         onChange={this.handleSalesRepChange} value={this.state.sales_person}
-                        required name='sales_person' id='sales_person'
-                    >
+                        required name='sales_person' id='sales_person'>
                         <option value=''>Choose a sales rep</option>
                         {this.state.sales_persons.map(sales_person => {
                             return (
@@ -84,7 +60,7 @@ class SalesListByRep extends React.Component {
                         </thead>
                         <tbody>
                             {this.state.sales_records
-                                ?.filter(sale =>
+                                .filter(sale =>
                                     sale.sales_person.employee_id == this.state.sales_person
                                     || this.state.sales_person === '')
                                 .map(sale => (
@@ -92,7 +68,7 @@ class SalesListByRep extends React.Component {
                                         <td>{sale.sales_person.name}</td>
                                         <td>{sale.customer.name}</td>
                                         <td>{sale.vin}</td>
-                                        <td>{sale.price}</td>
+                                        <td>{sale.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })} </td>
                                     </tr>
                                 ))}
                         </tbody>

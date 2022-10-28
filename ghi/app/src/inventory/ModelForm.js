@@ -9,29 +9,29 @@ class ModelForm extends React.Component {
             manufacturer_id: '',
             manufacturers: [],
         }
-        this.handleNameChange = this.handleNameChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handlePictureUrlChange = this.handlePictureUrlChange.bind(this);
-        this.handleManufacturerChange = this.handleManufacturerChange.bind(this);
+        this.handleNameChange = this.handleNameChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handlePictureUrlChange = this.handlePictureUrlChange.bind(this)
+        this.handleManufacturerChange = this.handleManufacturerChange.bind(this)
 
     }
     async handleSubmit(event) {
         event.preventDefault()
-        const data = { ...this.state };
+        const data = { ...this.state }
         delete data.manufacturers
-        const modelURL = 'http://localhost:8100/api/models/';
+        const modelURL = 'http://localhost:8100/api/models/'
         const fetchConfig = {
             method: 'post',
             body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
             },
-        };
+        }
         console.log(data)
-        const response = await fetch(modelURL, fetchConfig);
+        const response = await fetch(modelURL, fetchConfig)
         if (response.ok) {
-            const newVehicleModel = await response.json();
-            console.log(newVehicleModel);
+            const newVehicleModel = await response.json()
+            console.log(newVehicleModel)
         } else {
             console.log('error')
         }
@@ -41,21 +41,21 @@ class ModelForm extends React.Component {
             picture_url: "",
             manufacturer_id: ""
         }
-        this.setState(cleared);
+        this.setState(cleared)
     }
 
 
     handleNameChange(event) {
-        const value = event.target.value;
-        this.setState({ name: value });
+        const value = event.target.value
+        this.setState({ name: value })
     }
     handlePictureUrlChange(event) {
-        const value = event.target.value;
-        this.setState({ picture_url: value });
+        const value = event.target.value
+        this.setState({ picture_url: value })
     }
     handleManufacturerChange(event) {
-        const value = event.target.value;
-        this.setState({ manufacturer_id: value });
+        const value = event.target.value
+        this.setState({ manufacturer_id: value })
     }
 
 
@@ -93,7 +93,7 @@ class ModelForm extends React.Component {
                                                 <option key={manufacturer.id} value={manufacturer.id}>
                                                     {manufacturer.name}
                                                 </option>
-                                            );
+                                            )
                                         })}
                                     </select>
                                 </div>

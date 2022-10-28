@@ -40,7 +40,14 @@ class SalesRecordForm extends React.Component {
         if (response.ok) {
             const newSalesRecord = await response.json()
             console.log(newSalesRecord)
+            let soldAutoIndex = this.state.automobiles.findIndex(auto => data.automobile === auto.vin)
+            console.log(data.automobile)
+            let automobiles = [...this.state.automobiles]
+            console.log(soldAutoIndex, automobiles)
+            automobiles[soldAutoIndex].has_sold = true
+            this.setState({ automobiles })
         }
+
 
         const cleared = {
             automobile: "",
@@ -111,6 +118,7 @@ class SalesRecordForm extends React.Component {
                                     <select onChange={this.handleAutomobileChange} value={this.state.automobile} required name="automobiles" id="automobiles" className="form-select">
                                         <option value="">Choose an automobile by #VIN</option>
                                         {this.state.automobiles
+                                            .filter(auto => !auto.has_sold)
                                             .map(automobile => {
                                                 return (
                                                     <option key={automobile.vin} value={automobile.vin}>

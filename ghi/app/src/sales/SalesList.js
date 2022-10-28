@@ -23,7 +23,7 @@ function SalesList(props) {
                                     <td>{sale.sales_person.employee_id}</td>
                                     <td>{sale.customer.name}</td>
                                     <td>{sale.vin}</td>
-                                    <td>{sale.price}</td>
+                                    <td>{sale.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
                                 </tr>
                             )
                         })}

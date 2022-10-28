@@ -10,7 +10,7 @@ from .models import AutomobileVO, SaleRecord, SalesPerson, Customer
 # Create your views here.
 class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
-    properties = ["vin"]
+    properties = ["vin", "has_sold", "id"]
 
 
 class SalesPersonEncoder(ModelEncoder):
@@ -20,12 +20,12 @@ class SalesPersonEncoder(ModelEncoder):
 
 class CustomerEncoder(ModelEncoder):
     model = Customer
-    properties = ["name", "phone_number", "address"]
+    properties = ["name", "phone_number", "address", "id"]
 
 
 class SaleRecordEncoder(ModelEncoder):
     model = SaleRecord
-    properties = ["sales_person", "customer", "price"]
+    properties = ["sales_person", "customer", "price", "id"]
 
     encoders = {
         "sales_person": SalesPersonEncoder(),
@@ -116,6 +116,7 @@ def sales_record_list(request):
     else:
         # try:
         content = json.loads(request.body)
+        AutomobileVO.objects.filter(vin=content["automobile"]).update(has_sold=True)
         content = {
             **content,
             "sales_person": SalesPerson.objects.get(
@@ -124,7 +125,6 @@ def sales_record_list(request):
             "automobile": AutomobileVO.objects.get(vin=content["automobile"]),
             "customer": Customer.objects.get(name=content["customer"]),
         }
-        print(content)
         sales_record = SaleRecord.objects.create(**content)
         return JsonResponse(
             {"sales_record": sales_record},
