@@ -70,8 +70,8 @@ Enter a technician:
 - User can use a form to enter an automobitive technician's name and employee number. When the form is submitted, the automotive technician is created in the application. A success-message-alert will show in the window.
 - User can access the function from http://localhost:8080/technicians/new/ in the application.
 - From Insomnia, user can access the technician endpoints at the following URLs.
-    List technicians	```GET```	http://localhost:8080/api/technicians/
-    Create a technician	```POST```	http://localhost:8080/api/technicians/
+List technicians	```GET```	http://localhost:8080/api/technicians/
+Create a technician	```POST```	http://localhost:8080/api/technicians/
 <img src="createtechnician.png" alt="Alt text" title="create technician">
 
 
