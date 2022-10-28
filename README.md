@@ -70,8 +70,8 @@ Enter a technician:
 - User can use a form to enter an automobitive technician's name and employee number. When the form is submitted, the automotive technician is created in the application. A success-message-alert will show in the window.
 - User can access the function from http://localhost:8080/technicians/new/ in the application.
 - From Insomnia, user can access the technician endpoints at the following URLs.
--- List technicians	```GET```	http://localhost:8080/api/technicians/
--- Create a technician	```POST```	http://localhost:8080/api/technicians/
+    List technicians	```GET```	http://localhost:8080/api/technicians/
+    Create a technician	```POST```	http://localhost:8080/api/technicians/
 <img src="createtechnician.png" alt="Alt text" title="create technician">
 
 
@@ -80,7 +80,7 @@ Enter a service appointment:
 - User can enter the VIN of the vehicle, the name of the owner, the date and time of the appointment, the assigned technician, and a reason for visit. When the form is submitted, the service appointment is created and saved in the application. A success-message-alert will show in the window.
 - User can access the function from http://localhost:8080/service/new/ in the application.
 - From Insomnia, user can access the appointments endpoints at the following URLs.
--- Create an appointment	POST	http://localhost:8080/api/appointments/
+    Create an appointment	POST	http://localhost:8080/api/appointments/
 <img src="createappointment.png" alt="Alt text" title="create appointment">
 
 
@@ -90,10 +90,10 @@ List of appointments:
 - Each appointment in the list of appointments has a button that allows the user to cancel the appointment, or to show that the service appointment has been finished. When a service appointment is canceled or finished, it should no longer show up in the list of appointments.
 - User can access the function from http://localhost:3000/service/ in the application.
 From Insomnia and your browser, user can access the appointments endpoints at the following URLs.
--- List appointments	GET	http://localhost:8080/api/appointments/
--- Get a specific appointment	GET	http://localhost:8080/api/appointments/${id}/
--- Update a specific appointment	PUT	http://localhost:8080/api/appointments/${id}/
--- Delete a specific appointment	DELETE	http://localhost:8080/api/appointments/${id}/
+    List appointments	GET	http://localhost:8080/api/appointments/
+    Get a specific appointment	GET	http://localhost:8080/api/appointments/${id}/
+    Update a specific appointment	PUT	http://localhost:8080/api/appointments/${id}/
+    Delete a specific appointment	DELETE	http://localhost:8080/api/appointments/${id}/
 <img src="list of appointments.png" alt="Alt text" title="list of appointments">
 
 
@@ -101,7 +101,7 @@ Service history:
 - User can search for a service history for a specific VIN. The page that has an input that allows the user to type in the VIN. On form submission, fetch all of the service appointments for an automobile with the VIN in the input. Then, show that list of service appointments to include the customer name, date and time of the appointment, the assigned technician's name, and the reason for the service.
 - User can access the function from http://localhost:8080/service/history/ in the application.
 - From Insomnia, user can access the service history endpoints at the following URLs.
--- Get the service history for specific manufacturer	```GET```	 http://localhost:8080/api/service/history/${VIN}/
+    Get the service history for specific manufacturer	```GET```	 http://localhost:8080/api/service/history/${VIN}/
 <img src="service appointments.png" alt="Alt text" title="service appointments">
 
 
@@ -158,30 +158,30 @@ The Inventory microservice is a fully-accessible Inventory API that can keep tra
 It has fully functional RESTful endpoints for the following entities:
 - Manufacturer: the company that manufactures the automobile
 From Insomnia and your browser, you can access the manufacturer endpoints at the following URLs.
--- List manufacturers	GET	http://localhost:8100/api/manufacturers/
--- Create a manufacturer	POST	http://localhost:8100/api/manufacturers/
--- Get a specific manufacturer	GET	http://localhost:8100/api/manufacturers/${id}/
--- Update a specific manufacturer	PUT	http://localhost:8100/api/manufacturers/${id}/
--- Delete a specific manufacturer	DELETE	http://localhost:8100/api/manufacturers/${id}/
+- List manufacturers	GET	http://localhost:8100/api/manufacturers/
+- Create a manufacturer	POST	http://localhost:8100/api/manufacturers/
+- Get a specific manufacturer	GET	http://localhost:8100/api/manufacturers/${id}/
+- Update a specific manufacturer	PUT	http://localhost:8100/api/manufacturers/${id}/
+- Delete a specific manufacturer	DELETE	http://localhost:8100/api/manufacturers/${id}/
 <img src="manufacturers.png" alt="Alt text" title="manufacturers">
 <img src="createmanufacturer.png" alt="Alt text" title="create manufacturer">
 
 - VehicleModel: the model of a vehicle created by the manufacturer
 From Insomnia and your browser, you can access the vehicle model endpoints at the following URLs.
--- List vehicle models	GET	http://localhost:8100/api/models/
--- Create a vehicle model	POST	http://localhost:8100/api/models/
--- Get a specific vehicle model	GET	http://localhost:8100/api/models/${id}/
--- Update a specific vehicle model	PUT	http://localhost:8100/api/models/${id}/
--- Delete a specific vehicle model	DELETE	http://localhost:8100/api/models/${id}/
+- List vehicle models	GET	http://localhost:8100/api/models/
+- Create a vehicle model	POST	http://localhost:8100/api/models/
+- Get a specific vehicle model	GET	http://localhost:8100/api/models/${id}/
+- Update a specific vehicle model	PUT	http://localhost:8100/api/models/${id}/
+- Delete a specific vehicle model	DELETE	http://localhost:8100/api/models/${id}/
 <img src="vehiclemodels.png" alt="Alt text" title="vehicle models">
 <img src="createvehiclemodel.png" alt="Alt text" title="create vehicle model">
 
 - Automobile: the actual automobile of a specific vehicle model
 From Insomnia and your browser, you can access the automobile endpoints at the following URLs.
--- List automobiles	GET	http://localhost:8100/api/automobiles/
--- Create an automobile	POST	http://localhost:8100/api/automobiles/
--- Get a specific automobile	GET	http://localhost:8100/api/automobiles/${id}/
--- Update a specific automobile	PUT	http://localhost:8100/api/automobiles/${id}/
--- Delete a specific automobile	DELETE	http://localhost:8100/api/automobiles/${id}/
+- List automobiles	GET	http://localhost:8100/api/automobiles/
+- Create an automobile	POST	http://localhost:8100/api/automobiles/
+- Get a specific automobile	GET	http://localhost:8100/api/automobiles/${id}/
+- Update a specific automobile	PUT	http://localhost:8100/api/automobiles/${id}/
+- Delete a specific automobile	DELETE	http://localhost:8100/api/automobiles/${id}/
 <img src="automobiles.png" alt="Alt text" title="automobiles">
 <img src="createveAutomobiles.png" alt="Alt text" title="create automobile">
