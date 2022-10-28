@@ -32,10 +32,15 @@ class ModelForm extends React.Component {
             },
         }
 
+
         const response = await fetch(modelURL, fetchConfig)
         if (response.ok) {
             const newVehicleModel = await response.json()
-            console.log(newVehicleModel)
+            console.log('newVehicleModel:', newVehicleModel)
+
+            // const modelList = [...this.state]
+            // console.log('models', modelList)
+            // this.setState({ modelList: [...this.modelList, newVehicleModel] })
 
             const cleared = {
                 name: "",

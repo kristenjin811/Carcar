@@ -17,15 +17,22 @@ CarCar provides the following features:
 - Show list of car models
 - Add new car model
 - Show list of automobiles
-- add new automobiles
--
--
--
--
+- Add new automobiles
+- Add new customers
+- Add new sales representatives
+- Add sale transaction records
+- View all sale transactions
+- View sale transactions by sale representative
 
 CarCar is an app comprised of three microservices: Inventory, Sales and Services. The aggregate root of CarCar is Inventory as the bounded contexts of Sales and Services is based on data in the Inventory microservice. 
 
 The microservices communicate via a poller. The sales microservice polls for value objects based on the automobile model in Inventory. 
+
+The inventory API runs on port 8100. 
+URLS to access the inventory API:
+- http://localhost:8100/api/manufacturers/
+- http://localhost:8100/api/models/
+- http://localhost:8100/api/automobiles/
 
 ## Getting Started
 You can get started with Carcar by setting up a local development environment.
@@ -46,6 +53,7 @@ docker-compose up
 ## Design
 "Sales", "Services", and "Inventory" are each in their own separate microservices. 
 
+```insert diagram here```
 
 # API Endpoints
 ## Service microservice
@@ -72,17 +80,27 @@ The Sales microservice is an API that exists within a bounded context tied to th
 * Transaction history 
     * Total transactions
     * By sales representative
-* Ability to create new transactions
+* Ability to create new sale transaction records
+    * When a new sale record is created the associated Automobile is marked as sold and no longer appears in the select dropdown of the create sale record form.
 
 ### Models
 The sales microservice uses four models:
-* AutomobileVO - a value object representing an individual vehicle
-* SalesPerson
-* Customer
-* SalesRecord
+* AutomobileVO - a value object representing an individual vehicle. This data is obtained via a poller from the inventory microservice. 
+    * A unique VIN number.
+    * A boolean field indicating if the automobile has been sold.
+* SalesPerson - an entity.
+    * Name of the sales person. 
+    * A unique employee ID.
+* Customer - an entity.
+    * Name of customer.
+    * Address.
+    * Phone number. 
+* SalesRecord - a value object. 
+    * Automobile - a Foreign Key representing an instance of the AutomobileVO'.
+    * Sales person - a Foreign Key representing the SalesPerson
+    * Customer - a Foreign Key representing the Customer. 
+    * Price
  
  ### Poller
 
  
-
-The sales microservice uses the RESTful API to handle automobile service appointments.
