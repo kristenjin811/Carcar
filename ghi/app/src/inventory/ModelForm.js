@@ -6,19 +6,21 @@ class ModelForm extends React.Component {
         this.state = {
             name: '',
             picture_url: '',
-            manufacturer_id: '',
+            manufacturer: '',
             manufacturers: [],
         }
         this.handleNameChange = this.handleNameChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
-        this.handlePictureUrlChange = this.handlePictureUrlChange.bind(this)
+        this.handlePictureURLChange = this.handlePictureURLChange.bind(this)
         this.handleManufacturerChange = this.handleManufacturerChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
 
     }
     async handleSubmit(event) {
         event.preventDefault()
         const data = { ...this.state }
+        data.manufacturer_id = data.manufacturer
         delete data.manufacturers
+
         const modelURL = 'http://localhost:8100/api/models/'
         const fetchConfig = {
             method: 'post',
@@ -27,21 +29,20 @@ class ModelForm extends React.Component {
                 'Content-Type': 'application/json',
             },
         }
-        console.log(data)
+
         const response = await fetch(modelURL, fetchConfig)
         if (response.ok) {
             const newVehicleModel = await response.json()
             console.log(newVehicleModel)
-        } else {
-            console.log('error')
+
+            const cleared = {
+                name: "",
+                picture_url: "",
+                manufacturer: ""
+            }
+            this.setState(cleared)
         }
 
-        const cleared = {
-            name: "",
-            picture_url: "",
-            manufacturer_id: ""
-        }
-        this.setState(cleared)
     }
 
 
@@ -49,13 +50,13 @@ class ModelForm extends React.Component {
         const value = event.target.value
         this.setState({ name: value })
     }
-    handlePictureUrlChange(event) {
+    handlePictureURLChange(event) {
         const value = event.target.value
         this.setState({ picture_url: value })
     }
     handleManufacturerChange(event) {
         const value = event.target.value
-        this.setState({ manufacturer_id: value })
+        this.setState({ manufacturer: value })
     }
 
 
@@ -78,15 +79,15 @@ class ModelForm extends React.Component {
                             <h1>Add Vehicle Model</h1>
                             <form onSubmit={this.handleSubmit} id="modelform">
                                 <div className="form-floating mb-3">
-                                    <input onChange={this.handleNameChange} placeholder="Name" required type="text" name="name" id="name" className="form-control" />
+                                    <input onChange={this.handleNameChange} value={this.state.name} placeholder="Name" required type="text" name="name" id="name" className="form-control" />
                                     <label htmlFor="name">Name</label>
                                 </div>
                                 <div className="form-floating mb-3">
-                                    <input onChange={this.handlePictureUrlChange} placeholder="Picture URL" required type="text" name="picture_url" id="picture_url" className="form-control" />
+                                    <input onChange={this.handlePictureURLChange} value={this.state.picture_url} placeholder="Picture URL" required type="text" name="picture_url" id="picture_url" className="form-control" />
                                     <label htmlFor="picture_url">Picture URL</label>
                                 </div>
                                 <div className="mb-3">
-                                    <select onChange={this.handleManufacturerChange} placeholder="Manufacturer" required name="manufacturers" id="manufacturers" className="form-select">
+                                    <select onChange={this.handleManufacturerChange} value={this.state.manufacturer} placeholder="Manufacturer" required name="manufacturers" id="manufacturers" className="form-select">
                                         <option value="">Choose a manufacturer</option>
                                         {this.state.manufacturers.map(manufacturer => {
                                             return (
