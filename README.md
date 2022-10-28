@@ -70,8 +70,8 @@ Enter a technician:
 - User can use a form to enter an automobitive technician's name and employee number. When the form is submitted, the automotive technician is created in the application. A success-message-alert will show in the window.
 - User can access the function from http://localhost:8080/technicians/new/ in the application.
 - From Insomnia, user can access the technician endpoints at the following URLs.
-List technicians	```GET```	http://localhost:8080/api/technicians/
-Create a technician	```POST```	http://localhost:8080/api/technicians/
+1. List technicians	```GET```	http://localhost:8080/api/technicians/
+2. Create a technician	```POST```	http://localhost:8080/api/technicians/
 <img src="createtechnician.png" alt="Alt text" title="create technician">
 
 
@@ -80,7 +80,7 @@ Enter a service appointment:
 - User can enter the VIN of the vehicle, the name of the owner, the date and time of the appointment, the assigned technician, and a reason for visit. When the form is submitted, the service appointment is created and saved in the application. A success-message-alert will show in the window.
 - User can access the function from http://localhost:8080/service/new/ in the application.
 - From Insomnia, user can access the appointments endpoints at the following URLs.
-    Create an appointment	POST	http://localhost:8080/api/appointments/
+1. Create an appointment	POST	http://localhost:8080/api/appointments/
 <img src="createappointment.png" alt="Alt text" title="create appointment">
 
 
