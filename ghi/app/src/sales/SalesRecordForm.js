@@ -48,6 +48,8 @@ class SalesRecordForm extends React.Component {
 
             automobiles[soldAutoIndex].has_sold = true
             this.setState({ automobiles })
+
+            this.props.addSaleRecord(newSalesRecord.sales_record)
         }
 
 

@@ -28,16 +28,12 @@ CarCar is an app comprised of three microservices: Inventory, Sales and Services
 
 The microservices communicate via a poller. The sales microservice polls for value objects based on the automobile model in Inventory. 
 
-The inventory API runs on port 8100. 
-URLS to access the inventory API:
-- http://localhost:8100/api/manufacturers/
-- http://localhost:8100/api/models/
-- http://localhost:8100/api/automobiles/
-
 ## Getting Started
 You can get started with Carcar by setting up a local development environment.
 
 ## Development Environment(Local)
+
+
 ### System Requirements
 - Docker
 - Git
@@ -51,11 +47,28 @@ docker-compose up
 ```
 
 ## Design
-"Sales", "Services", and "Inventory" are each in their own separate microservices. 
+"Sales", "Services", and "Inventory" are each in their own separate microservice. 
 
-```insert diagram here```
+![Diagram of CarCar](/CarCar%20Diagram.png)
 
 # API Endpoints
+The inventory API runs on port 8100. 
+URLS to access the inventory API:
+- http://localhost:8100/api/manufacturers/
+- http://localhost:8100/api/models/
+- http://localhost:8100/api/automobiles/
+- http://localhost:8100/api/automobiles/:vin/
+
+URLS to access the sales API:
+- http://localhost:8090/api/automobileVO/:vin/
+- http://localhost:8090/api/automobileVO/
+- http://localhost:8090/api/customers/
+- http://localhost:8090/api/customers/id
+- http://localhost:8090/api/salesrecords/
+- http://localhost:8090/api/salesrecords//id/
+- http://localhost:8090/api/salespersons/
+- http://localhost:8090/api/salespersons/id/
+
 ## Service microservice
 
 The service microservice has three models:
@@ -81,7 +94,7 @@ The Sales microservice is an API that exists within a bounded context tied to th
     * Total transactions
     * By sales representative
 * Ability to create new sale transaction records
-    * When a new sale record is created the associated Automobile is marked as sold and no longer appears in the select dropdown of the create sale record form.
+    * When a new sale record is created the associated AutomobileVO is marked as sold and no longer appears in the select dropdown of the create sale record form.
 
 ### Models
 The sales microservice uses four models:
@@ -102,5 +115,5 @@ The sales microservice uses four models:
     * Price
  
  ### Poller
-
+The Sales API and Inventory API commincate via a poller. This is the integration point between these bounded contexts. From the Automobile model in Inventory API the poller creates instances of the AutomobileVO using the unique VIN number associated with each instance. 
  

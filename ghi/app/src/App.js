@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import MainPage from './MainPage'
 import Nav from './Nav'
@@ -21,8 +22,30 @@ import ServiceHistory from './Autoservice/ServiceHistory'
 import AppointmentForm from './Autoservice/AppointmentForm'
 
 function App(props) {
+  const [models, setModels] = useState([])
+  const [saleRecords, setSaleRecords] = useState([])
+
+  useEffect(() => {
+    fetch("http://localhost:8100/api/models/")
+      .then(res => res.json())
+      .then(data => data.models)
+      .then(setModels);
+    fetch('http://localhost:8090/api/salesrecords/')
+      .then(res => res.json())
+      .then(data => data.sales_records)
+      .then(setSaleRecords);
+  }, [])
+
+
+  function addModel(model) {
+    setModels([...models, model])
+  }
+  function addSaleRecord(record) {
+    setSaleRecords([...saleRecords, record])
+  }
+
   if (props.service_appointments === undefined
-    && props.models === undefined
+    && models.length <= 0
     && props.sales_records === undefined) {
     return null
   }
@@ -37,9 +60,9 @@ function App(props) {
           <Route path="service/new/" element={<AppointmentForm />} />
           <Route path="technicians/new/" element={<TechnicianForm />} />
 
-          <Route path="sales/" element={<SalesList sales_records={props.sales_records} />} />
-          <Route path="sales/new/" element={<SalesRecordForm />} />
-          <Route path="sales/rep" element={<SalesListByRep sales_records={props.sales_records} />} />
+          <Route path="sales/" element={<SalesList sales_records={saleRecords} />} />
+          <Route path="sales/new/" element={<SalesRecordForm addSaleRecord={addSaleRecord} />} />
+          <Route path="sales/rep" element={<SalesListByRep sales_records={saleRecords} />} />
           <Route path="customer/" element={<CustomerForm />} />
           <Route path="salesperson/" element={<SalesRepForm />} />
 
@@ -49,8 +72,8 @@ function App(props) {
           <Route path="automobiles/" element={<AutomobileList automobiles={props.automobiles} />} />
           <Route path="automobiles/new/" element={<AutomobileForm automobiles={props.autos} />} />
 
-          <Route path="models/" element={<ModelList models={props.models} />} />
-          <Route path="models/new/" element={<ModelForm />} />
+          <Route path="models/" element={<ModelList models={models} />} />
+          <Route path="models/new/" element={<ModelForm addModel={addModel} />} />
 
         </Routes>
       </div>

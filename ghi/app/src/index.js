@@ -26,7 +26,7 @@ async function loadData() {
           sales_records={salesData.sales_records}
           manufacturers={manufacturerData.manufacturers}
           automobiles={automobilesData.autos}
-          />
+        />
       </React.StrictMode>
     )
   } else {

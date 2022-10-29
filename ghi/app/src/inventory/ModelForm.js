@@ -32,15 +32,11 @@ class ModelForm extends React.Component {
             },
         }
 
-
         const response = await fetch(modelURL, fetchConfig)
         if (response.ok) {
             const newVehicleModel = await response.json()
             console.log('newVehicleModel:', newVehicleModel)
-
-            // const modelList = [...this.state]
-            // console.log('models', modelList)
-            // this.setState({ modelList: [...this.modelList, newVehicleModel] })
+            this.props.addModel(newVehicleModel)
 
             const cleared = {
                 name: "",
@@ -71,7 +67,6 @@ class ModelForm extends React.Component {
     async componentDidMount() {
         const url = 'http://localhost:8100/api/manufacturers/'
         const response = await fetch(url)
-
         if (response.ok) {
             const data = await response.json()
             this.setState({ manufacturers: data.manufacturers })
