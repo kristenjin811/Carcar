@@ -197,3 +197,5 @@ From Insomnia and your browser, you can access the automobile endpoints at the f
 - Delete a specific automobile	DELETE	http://localhost:8100/api/automobiles/${id}/
 <img src="automobiles.png" alt="Alt text" title="automobiles">
 <img src="createAutomobiles.png" alt="Alt text" title="create automobile">
+
+
